@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1c8000</color>
+    <color name="colorPrimaryDark">#0e6a00</color>
+    <color name="colorAccent">#128800</color>
+    <color name="whiteTransparent">#b9ffffff</color>
+    <color name="tint">#12cc97</color>
+    <color name="bg">#c0ffffff</color>
+    <color name="card_bg">#d6ffd8</color>
+    <color name="text_color">#474747</color>
+
+    <color name="edit_titlebar">#E88800</color>
+    <color name="view_titlebar">#555555</color>
+
+    <color name="cyan">#00ddff</color>
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="light">#EFEFEF</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="login_background">#BBEFEFEF</color>
+    <color name="red">#FF0000</color>
+    <color name="delete_background">#55666666</color>
+</resources>

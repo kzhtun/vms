@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Vehicle Control System</string>
+    <string name="openDrawer">Open Drawer</string>
+    <string name="closeDrawer">Close Drawer</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment"> Hello blank fragment </string>
+    <string name="button_text_previous"> <![CDATA[<]]> </string>
+    <string name="button_text_next"> <![CDATA[>]]> </string>
+    <string name="button_text_save"> SAVE</string>
+</resources>

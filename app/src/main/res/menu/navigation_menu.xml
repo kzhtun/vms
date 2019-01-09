@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:id="@+id/group_1" android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home"
+            android:checked="false"
+            android:icon="@mipmap/ic_home_black_24dp"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/my_profile"
+            android:checked="false"
+            android:icon="@mipmap/ic_account_circle_black_24dp"
+            android:title="My Profile" />
+
+        <item
+            android:id="@+id/logout"
+            android:checked="false"
+            android:icon="@mipmap/ic_exit_to_app_black_24dp"
+            android:title="Logout" />
+
+    </group>
+
+    <group android:id="@+id/group_2"  android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/scan_iu"
+            android:checked="false"
+            android:icon="@mipmap/ic_home_black_24dp"
+            android:title="Scan IU"
+            android:visible="false"/>
+
+        <item
+            android:id="@+id/register_car"
+            android:checked="false"
+            android:icon="@mipmap/ic_assignment_turned_in_black_24dp"
+            android:title="Register Car" />
+
+
+        <item
+            android:id="@+id/not_send_car"
+            android:checked="false"
+            android:icon="@mipmap/ic_info_black_24dp"
+            android:title="Not Send Vehicle List" />
+
+
+        <item
+            android:id="@+id/sent_car"
+            android:checked="false"
+            android:icon="@mipmap/ic_info_outline_black_24dp"
+            android:title="Sent Vehicle List" />
+
+    </group>
+
+    <group android:id="@+id/group_3"  android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/register_visitor"
+            android:checked="false"
+            android:icon="@mipmap/ic_account_circle_black_24dp"
+            android:title="Register Visitor" />
+
+
+        <item
+            android:id="@+id/not_send_visitor"
+            android:checked="false"
+            android:icon="@mipmap/ic_info_black_24dp"
+            android:title="Not Send Visitor List" />
+
+
+        <item
+            android:id="@+id/sent_visitor"
+            android:checked="false"
+            android:icon="@mipmap/ic_info_outline_black_24dp"
+            android:title="Sent Visitor List" />
+
+    </group>
+
+
+
+</menu>

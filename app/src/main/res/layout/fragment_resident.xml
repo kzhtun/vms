@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nav_btn_next_prev"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/main_padding">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <EditText
+                android:id="@+id/et_unit_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Unit No."
+                android:textSize="@dimen/text_size" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <EditText
+                android:id="@+id/et_resident"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Resident"
+                android:textSize="@dimen/text_size" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <EditText
+                android:id="@+id/et_purpose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Purpose"
+                android:textSize="@dimen/text_size" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <EditText
+                android:id="@+id/et_remarks"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Remarks"
+                android:maxLines="10"
+                android:textSize="@dimen/text_size" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <Button
+                android:id="@+id/btn_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+
+                android:text="@string/button_text_previous"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/control_spacing"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="@string/button_text_next"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/control_spacing"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "268832213030",
+    "firebase_url": "https://vcms-1beee.firebaseio.com",
+    "project_id": "vcms-1beee",
+    "storage_bucket": "vcms-1beee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268832213030:android:c8ce50b9be7647d9",
+        "android_client_info": {
+          "package_name": "com.info121.vcms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268832213030-nmlb7fl5j1agepoamr0ocnqliuqtsknl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.info121.vcms",
+            "certificate_hash": "1f8b5b3e7e8c59ff54c71a761212b3dc5794cb22"
+          }
+        },
+        {
+          "client_id": "268832213030-t9bmgmgigk1l7goe2pddkobtf6lbgrh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhhCEy-BPSbUSy_C0DrfsisdCUXBT18FM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268832213030-t9bmgmgigk1l7goe2pddkobtf6lbgrh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

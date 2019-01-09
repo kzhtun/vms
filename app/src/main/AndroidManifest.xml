@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.info121.vms">
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:remove="android:maxSdkVersion" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.info121.vms.App"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!--<meta-data-->
+            <!--android:name="net.hockeyapp.android.appIdentifier"-->
+            <!--android:value="${HOCKEYAPP_APP_ID}" />-->
+
+        <!-- Sugar DB Start -->
+        <meta-data
+            android:name="DATABASE"
+            android:value="vms5.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="5" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.info121.vms" />
+        <!-- Sugar DB End -->
+
+        <activity android:name="com.info121.vms.activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.info121.vms.activities.MainActivity" />
+        <activity android:name="com.info121.vms.activities.SettingsActivity" />
+        <activity
+            android:name="com.info121.vms.activities.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme" />
+        <activity android:name="com.info121.vms.activities.LoginActivity" />
+        <activity android:name="com.info121.vms.activities.ViewRegistrationActivity" />
+        <activity android:name="com.info121.vms.activities.MyProfileActivity" />
+        <activity android:name="com.info121.vms.activities.IUScanningActivity" />
+        <activity android:name="com.info121.vms.activities.VehiclePhotoActivity" />
+    </application>
+
+</manifest>

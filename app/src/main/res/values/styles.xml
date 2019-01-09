@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="ButtonCustome" parent="Base.TextAppearance.AppCompat.Button">
+        <item name="backgroundTint">@color/tint</item>
+    </style>
+
+    <style name="bgCustome" parent="Base.TextAppearance.AppCompat.Button">
+        <item name="backgroundTint">@color/bg</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
+        <item name="tabIndicatorColor">@color/colorPrimaryDark</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+
+    <!--&lt;!&ndash;<item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>&ndash;&gt;-->
+
+    <!--<style name="AppTheme.Widget.ActionButton" parent="@style/Widget.AppCompat.ActionButton">-->
+        <!--<item name="textAllCaps">false</item>-->
+    <!--</style>-->
+</resources>

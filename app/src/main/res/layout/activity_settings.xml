@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nav_btn_next_prev"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+
+        android:layout_margin="@dimen/main_padding">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_register_ip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <EditText
+                android:id="@+id/et_current_ip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Current IP"
+                android:inputType="textPersonName"
+                android:textSize="@dimen/text_size" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_walkin_ip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <EditText
+                android:id="@+id/et_new_ip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="New IP"
+                android:inputType="textPersonName"
+                android:textSize="@dimen/text_size" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:text="UPDATE"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/control_spacing"/>
+
+    </LinearLayout>
+
+</LinearLayout>

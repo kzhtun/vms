@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@mipmap/main_blur"
+    android:padding="@dimen/main_padding">
+
+    <LinearLayout
+        android:background="@color/login_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nav_btn_next_prev"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_mobile_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <EditText
+                android:id="@+id/et_mobile_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile No."
+                android:inputType="textPersonName"
+                android:textSize="@dimen/text_size" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_spacing">
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textSize="@dimen/text_size" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:text="LOGIN"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/control_spacing"/>
+
+        <Button
+            android:id="@+id/btn_setting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:text="SETTINGS"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/control_spacing"/>
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:text="REGISTER"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/control_spacing"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <TextView android:id="@+id/ui_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right|bottom"
+        android:layout_marginTop="16dp"
+        android:text="ver 0.0"
+        android:textColor="@color/oil"/>
+</LinearLayout>
