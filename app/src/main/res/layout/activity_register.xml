@@ -223,26 +223,45 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btn_scan"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/main_padding"
-                        android:layout_marginRight="8dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:text="Read Entry"
-                        android:textColor="@color/white" />
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btn_scan_no_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="@dimen/main_padding"
+                            android:layout_marginRight="8dp"
+                            android:background="@color/colorPrimary"
+                            android:text="Read No Photo"
+                            android:textColor="@color/white" />
+
+                        <Button
+                            android:id="@+id/btn_scan"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="@dimen/main_padding"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/colorPrimary"
+                            android:text="Read with Photo"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
 
                     <Button
                         android:id="@+id/btn_cancel"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="@dimen/main_padding"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:background="@color/red"
-                        android:text="Cancel"
+                        android:text="Clear"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -463,8 +482,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/main_padding"
-                    android:paddingBottom="16dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"

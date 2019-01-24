@@ -61,8 +61,8 @@ public class RestClient {
                                 return chain.proceed(newRequest);
                             }
                         })
-                        .connectTimeout(60, TimeUnit.SECONDS)
-                        .readTimeout(60, TimeUnit.SECONDS)
+                        .connectTimeout(5, TimeUnit.SECONDS)
+                        .readTimeout(5, TimeUnit.SECONDS)
                         .build()
                 ).build();
 

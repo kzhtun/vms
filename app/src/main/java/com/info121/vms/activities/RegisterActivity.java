@@ -235,6 +235,8 @@ public class RegisterActivity extends AbstractActivity {
     ProgressBar mPgScanVehiclePhoto;
 
 
+    Boolean withPhoto = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -251,8 +253,8 @@ public class RegisterActivity extends AbstractActivity {
             populateVehicle(Integer.parseInt(getIntent().getStringExtra(ID)));
             mCall.setVisibility(View.VISIBLE);
         } else {
-         //   mToolbar.setTitle("New Vehicle Registration");
-            mWelcomeMsg.setText("New Vehicle Registration" );
+            //   mToolbar.setTitle("New Vehicle Registration");
+            mWelcomeMsg.setText("New Vehicle Registration");
             vehicle = new Vehicle();
 
             mCall.setVisibility(View.GONE);
@@ -283,14 +285,14 @@ public class RegisterActivity extends AbstractActivity {
         mLayoutScan.setVisibility(View.VISIBLE);
 
         if (vehicle.getStatus().equals(Status.NOTSEND)) {
-           // mToolbar.setTitle("Edit Vehicle Registration");
+            // mToolbar.setTitle("Edit Vehicle Registration");
             mWelcomeMsg.setText("Edit Vehicle Registration");
             mToolbar.setBackgroundColor(getResources().getColor(R.color.edit_titlebar));
             mSave.setText("UPDATE");
             mLayoutScan.setVisibility(View.GONE);
 
         } else {
-          //  mToolbar.setTitle("View Vehicle Registration");
+            //  mToolbar.setTitle("View Vehicle Registration");
             mWelcomeMsg.setText("View Vehicle Registration");
             mToolbar.setBackgroundColor(getResources().getColor(R.color.view_titlebar));
             mSave.setText("EXIT");
@@ -576,15 +578,13 @@ public class RegisterActivity extends AbstractActivity {
 
 
     @OnClick(R.id.switch_lane)
-    public void SwitchLaneOnClick(){
+    public void SwitchLaneOnClick() {
         clearAllFields();
     }
 
 
-    @OnClick(R.id.btn_scan)
-    public void btnScanOnClick() {
-
-        if(!isOnline(mContext)){
+    private void scanVehicleData() {
+        if (!isOnline(mContext)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Unable to connect to server. Please check your internet connection.")
                     .setCancelable(false)
@@ -603,8 +603,11 @@ public class RegisterActivity extends AbstractActivity {
 
         pd = ProgressDialog.show(mContext, "", "Scanning ...", true, false);
 
-        mPgScanVehiclePhoto.setVisibility(View.VISIBLE);
-        mScanVehiclePhoto.setVisibility(View.GONE);
+
+        if (withPhoto) {
+            mPgScanVehiclePhoto.setVisibility(View.VISIBLE);
+            mScanVehiclePhoto.setVisibility(View.GONE);
+        }
 
         String lane;
         if (mSwitchLane.isChecked())
@@ -616,18 +619,29 @@ public class RegisterActivity extends AbstractActivity {
     }
 
 
+    @OnClick(R.id.btn_scan_no_photo)
+    public void btnScanNoPhotoOnClick() {
+        withPhoto = false;
+        scanVehicleData();
+    }
+
+    @OnClick(R.id.btn_scan)
+    public void btnScanOnClick() {
+        withPhoto = true;
+        scanVehicleData();
+    }
+
 
     @Subscribe
     public void onEvent(ScanResult res) throws IOException {
         if (res != null) {
-
 
             if (pd != null && pd.isShowing()) {
                 pd.dismiss();
             }
 
 
-            if(res.getIunumber().isEmpty()){
+            if (res.getIunumber().isEmpty()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("There is no scan vehicle data.")
                         .setCancelable(false)
@@ -650,10 +664,10 @@ public class RegisterActivity extends AbstractActivity {
             //  mVehicleNo.setText(res.getCarnumber());
             mIuNumber.setText(res.getIunumber());
             //  mSerialNo.setText(res.getSerialno());
-           // 8/14/2018 1:01:26 PM
+            // 8/14/2018 1:01:26 PM
             Date longDate = Utils.convertDateStringToDate(res.getEntrydatetime(), "MM/dd/yyyy hh:mm:ss a");
 
-            mEntryDateTime.setText( Utils.convertDateToString(longDate, "dd/MM/yyyy hh:mm"));
+            mEntryDateTime.setText(Utils.convertDateToString(longDate, "dd/MM/yyyy hh:mm"));
             mName.setText(res.getDrivername());
 
 
@@ -698,39 +712,40 @@ public class RegisterActivity extends AbstractActivity {
             }
 
 
-            if (!Utils.isNullOrEmpty(res.getCarphoto())) {
-                scanVehiclePhotoURL = App.CONST_PHOTO_DOWNLOAD_URL + "/" + res.getCarphoto();
+            if (withPhoto)
+                if (!Utils.isNullOrEmpty(res.getCarphoto())) {
+                    scanVehiclePhotoURL = App.CONST_PHOTO_DOWNLOAD_URL + "/" + res.getCarphoto();
 
-                mPgScanVehiclePhoto.setVisibility(View.GONE);
-                mScanVehiclePhoto.setVisibility(View.VISIBLE);
+                    mPgScanVehiclePhoto.setVisibility(View.GONE);
+                    mScanVehiclePhoto.setVisibility(View.VISIBLE);
 
-                Picasso.get().load(scanVehiclePhotoURL).into(mScanVehiclePhoto, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                mVehiclePhoto.setImageDrawable(mScanVehiclePhoto.getDrawable());
-                            }
-                        }, delay);
+                    Picasso.get().load(scanVehiclePhotoURL).into(mScanVehiclePhoto, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mVehiclePhoto.setImageDrawable(mScanVehiclePhoto.getDrawable());
+                                }
+                            }, delay);
 
-                        String fileName =  vehicle.getUuid() + "_2010_" + ".jpg";
+                            String fileName = vehicle.getUuid() + "_2010_" + ".jpg";
 
-                        savePhoto(((BitmapDrawable)mScanVehiclePhoto.getDrawable()).getBitmap(), fileName);
-                        vehicle.setPhotoVehicle(  fileName);
-                    }
+                            savePhoto(((BitmapDrawable) mScanVehiclePhoto.getDrawable()).getBitmap(), fileName);
+                            vehicle.setPhotoVehicle(fileName);
+                        }
 
-                    @Override
-                    public void onError(Exception e) {
+                        @Override
+                        public void onError(Exception e) {
 
-                    }
-                });
+                        }
+                    });
 
-            }else{
-                mPgScanVehiclePhoto.setVisibility(View.GONE);
-                mScanVehiclePhoto.setVisibility(View.VISIBLE);
-                mScanVehiclePhoto.setImageDrawable(getResources().getDrawable(R.mipmap.no_photo));
-            }
+                } else {
+                    mPgScanVehiclePhoto.setVisibility(View.GONE);
+                    mScanVehiclePhoto.setVisibility(View.VISIBLE);
+                    mScanVehiclePhoto.setImageDrawable(getResources().getDrawable(R.mipmap.no_photo));
+                }
 
         }
     }
@@ -793,7 +808,7 @@ public class RegisterActivity extends AbstractActivity {
                 mVehicleNo.setText(data.getStringExtra("VEHICLE_NO"));
                 return;
 
-                //break;
+            //break;
 
         }
 
@@ -1055,7 +1070,7 @@ public class RegisterActivity extends AbstractActivity {
 
 
     private void clearAllFields() {
-      //  FirebaseCrash.report(new Exception("Clear All Field"));
+        //  FirebaseCrash.report(new Exception("Clear All Field"));
 
         mScanVehiclePhoto.setImageDrawable(getResources().getDrawable(R.mipmap.no_photo));
 
@@ -1167,11 +1182,13 @@ public class RegisterActivity extends AbstractActivity {
         AlertDialog alert = builder.create();
         alert.show();
 
-
-
+        mPgScanVehiclePhoto.setVisibility(View.GONE);
+        mScanVehiclePhoto.setVisibility(View.VISIBLE);
 
         if (pd != null && pd.isShowing()) {
             pd.dismiss();
+
+
         }
     }
 
