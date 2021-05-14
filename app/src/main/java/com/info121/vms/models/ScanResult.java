@@ -33,6 +33,8 @@ public class ScanResult {
     private String mSerialno;
     @SerializedName("storey")
     private String mStorey;
+    @SerializedName("remarks")
+    private String mRemark;
 
     public String getBlockno() {
         return mBlockno;
@@ -138,4 +140,11 @@ public class ScanResult {
         mStorey = storey;
     }
 
+    public String getRemark() {
+        return mRemark;
+    }
+
+    public void setRemark(String mRemark) {
+        this.mRemark = mRemark;
+    }
 }

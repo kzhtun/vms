@@ -27,4 +27,18 @@
     <color name="login_background">#BBEFEFEF</color>
     <color name="red">#FF0000</color>
     <color name="delete_background">#55666666</color>
+
+    <color name="layout">#FFFFFF</color>
+    <color name="layout_stroke">#D7F0FF</color>
+    <color name="layout_light">#C9DBEB</color>
+
+    <color name="clear_button">#DA0000</color>
+    <color name="clear_button_stroke">#FF0000</color>
+
+    <color name="normal_button">#0e6a00</color>
+    <color name="normal_button_stroke">#118100</color>
+
+    <color name="disabled_button">#575757</color>
+    <color name="disabled_button_stroke">#6A6A6A</color>
+
 </resources>

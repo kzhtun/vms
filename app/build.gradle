@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.info121.vms"
         minSdkVersion 16
-        targetSdkVersion 27
-        versionCode 20
-        versionName "1.0"
+        targetSdkVersion 29
+        versionCode 11
+        versionName "3.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
       //  manifestPlaceholders = [HOCKEYAPP_APP_ID: "820587d489214377b032a0f18ea0465c"]
     }
@@ -57,6 +57,8 @@ dependencies {
     //  io.reactivex.rxjava2:rxandroid:2.0.1
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+
 
 }
 

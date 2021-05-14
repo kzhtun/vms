@@ -1,5 +1,7 @@
 package com.info121.vms.activities;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,11 +10,14 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,18 +62,27 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.date_time)
     TextView mDateTime;
 
+    @BindView(R.id.et_search_vehicle_no)
+    EditText mSearchVehicleNo;
+
+    @BindView(R.id.btn_search)
+    Button mBtnSearch;
 
     @BindView(R.id.welcome)
     TextView mWelcomeMsg;
 
     MenuItem mHome, mNotSendCar, mProfile, mSentCar, mRegister, mLogout, mScanIU;
 
+    Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     //   FirebaseCrash.report(new Exception("My first Android non-fatal error"));
+        mContext = MainActivity.this;
+
+        //   FirebaseCrash.report(new Exception("My first Android non-fatal error"));
 
         ButterKnife.bind(this);
 
@@ -85,20 +99,20 @@ public class MainActivity extends AppCompatActivity {
         mRegister = mNavigationView.getMenu().findItem(R.id.register_car);
         mLogout = mNavigationView.getMenu().findItem(R.id.logout);
         mNavWelcome = mNavigationView.getHeaderView(0).findViewById(R.id.welcome);
-        mCondoName =  mNavigationView.getHeaderView(0).findViewById(R.id.condo_name);
+        mCondoName = mNavigationView.getHeaderView(0).findViewById(R.id.condo_name);
         mNavDateTime = mNavigationView.getHeaderView(0).findViewById(R.id.date_time);
 
 
         mCondoName.setText(App.Condo_Name);
-        mWelcomeMsg.setText("Welcome " + App.User_Name );
+        mWelcomeMsg.setText("Welcome " + App.User_Name);
 
-       // mToolbar.setTitle("HOME");
+        // mToolbar.setTitle("HOME");
         setSupportActionBar(mToolbar);
 
         initializeEvents();
 
         Drawable mainDrawable = Utils.getDrawable("HomePhoto.jpg");
-        if(mainDrawable != null){
+        if (mainDrawable != null) {
             mHomeBackground.setBackground(mainDrawable);
         }
 
@@ -114,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 timer.postDelayed(this, 1000);
             }
         }, 1000);
-
 
 
 // --- Retrofit test --------------------
@@ -138,14 +151,44 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @OnClick(R.id.btn_search)
+    public void VehicleSearchOnClick() {
+
+        List<Vehicle> v = Vehicle.find(Vehicle.class, "VEHICLE_NO = ?", mSearchVehicleNo.getText().toString().toUpperCase());
+
+
+        if (v.size() == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Can not find the detail for the input vehicle number.")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    })
+
+                    .setTitle(getString(R.string.app_name))
+                    .setIcon(R.mipmap.circle_close_cross_delete_incorrect_invalid_x_icon_64);
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else {
+            final Intent intent = new Intent(mContext, RegisterActivity.class);
+            intent.putExtra(RegisterActivity.ID, v.get(0).getId().toString());
+            intent.putExtra(RegisterActivity.MODE, "VIEW");
+            startActivity(intent);
+        }
+
+    }
+
     @Subscribe
-    public void onEvent(String s){
+    public void onEvent(String s) {
         Log.e("Upload Photo : ", s);
     }
 
 
     @OnClick(R.id.btn_register_car)
-    public void RegisterCarOnClick(){
+    public void RegisterCarOnClick() {
         startActivity(new Intent(MainActivity.this, RegisterActivity.class));
     }
 

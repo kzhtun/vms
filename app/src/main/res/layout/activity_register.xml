@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/iron"
@@ -98,6 +99,8 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_layout"
+                    app:cardCornerRadius="10dp"
                     android:layout_margin="@dimen/main_padding"
                     android:layout_marginBottom="16dp">
 
@@ -127,7 +130,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="170dp"
                                     android:layout_marginLeft="8dp"
-                                    android:src="@mipmap/no_photo" />
+                                    app:srcCompat="@mipmap/no_photo" />
                             </FrameLayout>
 
                         </LinearLayout>
@@ -235,7 +238,7 @@
                             android:layout_height="50dp"
                             android:layout_marginLeft="@dimen/main_padding"
                             android:layout_marginRight="8dp"
-                            android:background="@color/colorPrimary"
+                            android:background="@drawable/rounded_button_green"
                             android:text="Read No Photo"
                             android:textColor="@color/white" />
 
@@ -246,7 +249,7 @@
                             android:layout_marginLeft="@dimen/main_padding"
                             android:layout_marginRight="8dp"
                             android:layout_marginTop="10dp"
-                            android:background="@color/colorPrimary"
+                            android:background="@drawable/rounded_button_green"
                             android:text="Read with Photo"
                             android:textColor="@color/white" />
 
@@ -260,7 +263,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="@dimen/main_padding"
                         android:layout_weight="3"
-                        android:background="@color/red"
+                        android:background="@drawable/rounded_button_red"
                         android:text="Clear"
                         android:textColor="@color/white" />
 
@@ -273,7 +276,10 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_padding">
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="@dimen/main_padding"
+                android:layout_marginLeft="@dimen/main_padding"
+                android:layout_marginRight="@dimen/main_padding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -322,7 +328,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/light"
                                 android:clickable="true"
-                                android:src="@mipmap/ic_camera_alt_black_48dp" />
+                                app:srcCompat="@mipmap/ic_camera_alt_black_48dp" />
 
                             <Button
                                 android:id="@+id/vehicle_delete"
@@ -359,7 +365,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/light"
                                 android:clickable="true"
-                                android:src="@mipmap/ic_camera_alt_black_48dp" />
+                                app:srcCompat="@mipmap/ic_camera_alt_black_48dp" />
 
                             <Button
                                 android:id="@+id/driver_delete"
@@ -398,7 +404,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/light"
                                 android:clickable="true"
-                                android:src="@mipmap/ic_camera_alt_black_48dp" />
+                                app:srcCompat="@mipmap/ic_camera_alt_black_48dp" />
 
                             <Button
                                 android:id="@+id/photo1_delete"
@@ -417,7 +423,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/light"
                                 android:clickable="true"
-                                android:src="@mipmap/ic_camera_alt_black_48dp"
+                                app:srcCompat="@mipmap/ic_camera_alt_black_48dp"
                                 android:visibility="gone" />
 
                             <ImageView
@@ -428,7 +434,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/light"
                                 android:clickable="true"
-                                android:src="@mipmap/ic_camera_alt_black_48dp"
+                                app:srcCompat="@mipmap/ic_camera_alt_black_48dp"
                                 android:visibility="gone" />
 
                             <ImageView
@@ -439,7 +445,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/light"
                                 android:clickable="true"
-                                android:src="@mipmap/ic_camera_alt_black_48dp"
+                                app:srcCompat="@mipmap/ic_camera_alt_black_48dp"
                                 android:visibility="gone" />
 
                             <ImageView
@@ -450,7 +456,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/light"
                                 android:clickable="true"
-                                android:src="@mipmap/ic_camera_alt_black_48dp"
+                                app:srcCompat="@mipmap/ic_camera_alt_black_48dp"
                                 android:visibility="gone" />
 
                             <ImageView
@@ -461,7 +467,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/light"
                                 android:clickable="true"
-                                android:src="@mipmap/ic_camera_alt_black_48dp"
+                                app:srcCompat="@mipmap/ic_camera_alt_black_48dp"
                                 android:visibility="gone" />
 
                         </LinearLayout>
@@ -476,7 +482,11 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_padding">
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="@dimen/main_padding"
+                android:layout_marginLeft="@dimen/main_padding"
+                android:layout_marginRight="@dimen/main_padding"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -515,7 +525,10 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_padding">
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="@dimen/main_padding"
+                android:layout_marginLeft="@dimen/main_padding"
+                android:layout_marginRight="@dimen/main_padding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -543,6 +556,7 @@
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
                         android:layout_marginTop="@dimen/control_spacing">
 
                         <EditText
@@ -622,7 +636,10 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_padding">
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="@dimen/main_padding"
+                android:layout_marginLeft="@dimen/main_padding"
+                android:layout_marginRight="@dimen/main_padding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -740,7 +757,10 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_padding">
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="@dimen/main_padding"
+                android:layout_marginLeft="@dimen/main_padding"
+                android:layout_marginRight="@dimen/main_padding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -791,7 +811,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/main_padding"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/rounded_button_green"
                 android:text="@string/button_text_save"
                 android:textColor="@color/white" />
 

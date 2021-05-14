@@ -57,7 +57,9 @@
 
             </android.support.v7.widget.Toolbar>
 
+
         </android.support.design.widget.AppBarLayout>
+
 
     </LinearLayout>
 
@@ -72,6 +74,10 @@
             android:layout_marginTop="?attr/actionBarSize"
             android:background="@mipmap/main" />
 
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -80,13 +86,53 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@drawable/rounded_layout">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/control_spacing">
+
+                        <EditText
+                            android:id="@+id/et_search_vehicle_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Search Vehicle by Number"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_size" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btn_search"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:layout_gravity="right"
+                        android:drawablePadding="5dp"
+                        android:drawableLeft="@mipmap/search_icon_green" />
+                </FrameLayout>
+
+
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_register_car"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="50dp"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/rounded_button_green"
                 android:text="REGISTER CAR"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
@@ -96,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="@dimen/control_spacing"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/rounded_button_green"
                 android:text="REGISTER VISITOR"
                 android:textColor="@color/white"
                 android:textStyle="bold" />

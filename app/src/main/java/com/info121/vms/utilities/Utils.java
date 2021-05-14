@@ -1,6 +1,5 @@
 package com.info121.vms.utilities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -10,10 +9,14 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 
+import com.info121.vms.R;
 import com.info121.vms.models.Vehicle;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -40,6 +43,24 @@ public class Utils {
     public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
 
+    public static void setButtonEnable(Context context, Button button, boolean flag){
+        final int sdk = android.os.Build.VERSION.SDK_INT;
+
+        button.setEnabled(flag);
+
+        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            if(flag)
+                button.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_button_green) );
+            else
+                button.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_button_grey) );
+        } else {
+            if(flag)
+                button.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_button_green));
+            else
+                button.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_button_grey));
+        }
+
+    }
 
     public static String getDeviceName() {
         String manufacturer = Build.MANUFACTURER;
@@ -128,7 +149,7 @@ public class Utils {
         return new SimpleDateFormat(outputDateFormat).format(date).toString();
     }
 
-    public static void hideSoftKeyboard(Activity activity) {
+    public static void hideSoftKeyboard(AppCompatActivity activity) {
         View view = activity.getCurrentFocus();
 
         if (view != null) {

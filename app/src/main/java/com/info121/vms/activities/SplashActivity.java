@@ -152,6 +152,8 @@ public class SplashActivity extends AbstractActivity {
 
             mStatus.setText("User Information is Loading ...");
             APIClient.GetUserList();
+
+           // APIClient.GetAllBlocks();
         }
 
     }
@@ -188,9 +190,6 @@ public class SplashActivity extends AbstractActivity {
         if (res.size() == 0) return;
 
         if (res.get(0) instanceof UserRes) {
-
-
-
 
             for (int i = 0; i < res.size(); i++) {
                 UserRes u = (UserRes) res.get(i);

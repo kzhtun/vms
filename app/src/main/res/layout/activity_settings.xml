@@ -57,7 +57,7 @@
             android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/rounded_button_green"
             android:text="UPDATE"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/control_spacing"/>

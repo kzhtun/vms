@@ -1,16 +1,15 @@
 package com.info121.vms.activities;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.info121.vms.AbstractActivity;
-
 import com.info121.vms.R;
 import com.info121.vms.models.ScanResult;
 import com.info121.vms.utilities.PrefDB;

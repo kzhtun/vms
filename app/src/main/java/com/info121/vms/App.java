@@ -12,6 +12,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.orm.SugarApp;
 
+
+
 import java.io.File;
 
 /**
@@ -32,8 +34,14 @@ public class App extends SugarApp {
 //    public static String CONST_PHOTO_UPLOAD_URL = "http://{IPADDRESS}/FileUpload_Test/api/";
 
 
+    //118.200.75.217
+     //       this is live
+
+//118.200.199.248
+        //this is dev
+
    // public static String CONST_PHOTO_URL = "http://118.200.199.248:81/VCMS_Photo/";
-    public static String CONST_FTP_URL = "118.200.199.248";
+    public static String CONST_FTP_URL = "118.200.75.83";
     public static final String CONST_FTP_USER = "ipos";
     public static final String CONST_FTP_PASSWORD = "iposftp";
     public static final String CONST_FTP_DIR = "vmspics";
@@ -69,6 +77,8 @@ public class App extends SugarApp {
 
         PrefDB prefDB = new PrefDB(getApplicationContext());
 
+       // prefDB.putString("CURRENT_IP", "118.200.199.248:81");
+
         CONST_REST_API_URL = CONST_REST_API_URL_TEMPLATE.replace("{IPADDRESS}", prefDB.getString("CURRENT_IP"));
         CONST_PHOTO_UPLOAD_URL = CONST_PHOTO_UPLOAD_TEMPLATE.replace("{IPADDRESS}", prefDB.getString("CURRENT_IP"));
 
@@ -92,6 +102,7 @@ public class App extends SugarApp {
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
+
 
         //builder.detectFileUriExposure();
     }

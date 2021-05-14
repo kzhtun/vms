@@ -1,7 +1,6 @@
 package com.info121.vms.activities;
 
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,17 +19,16 @@ import android.view.MenuItem;
 
 import com.info121.vms.AbstractActivity;
 import com.info121.vms.R;
-import com.info121.vms.utilities.Utils;
 import com.info121.vms.adapters.RegistrationAdapter;
 import com.info121.vms.api.APIClient;
 import com.info121.vms.models.Status;
 import com.info121.vms.models.Vehicle;
 import com.info121.vms.models.VehicleSaveRes;
+import com.info121.vms.utilities.Utils;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import org.greenrobot.eventbus.Subscribe;
-
 
 import java.io.File;
 import java.util.Calendar;
@@ -368,7 +368,7 @@ public class ViewRegistrationActivity extends AbstractActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (getIntent().getStringExtra(VIEW_TYPE).equals("NOTSEND")) {
-            menu.add(Menu.NONE, 0, Menu.NONE, "Send All")
+            MenuItemCompat.setShowAsAction(menu.add(Menu.NONE, 0, Menu.NONE, "Send All")
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
@@ -378,9 +378,7 @@ public class ViewRegistrationActivity extends AbstractActivity {
                                 showEmptyListDialog();
                             return true;
                         }
-                    })
-                    // .setIcon(ContextCompat.getDrawable(RegisterActivity.this, R.mipmap.ic_done_white_24dp))
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                    }), MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 
         }

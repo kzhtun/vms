@@ -39,7 +39,7 @@
                 android:background="@color/grey"
                 android:padding="1dp"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/no_photo" />
+                card_view:srcCompat="@mipmap/no_photo" />
 
 
         </LinearLayout>
@@ -63,7 +63,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_margin="4dp"
-                    android:src="@mipmap/navigate" />
+                    card_view:srcCompat="@mipmap/navigate" />
 
                 <TextView
                     android:id="@+id/tv_vehicle_no"
@@ -86,7 +86,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_margin="4dp"
-                    android:src="@mipmap/navigate" />
+                    card_view:srcCompat="@mipmap/navigate" />
 
                 <TextView
                     android:id="@+id/tv_mobile_no"
@@ -103,7 +103,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@mipmap/call_contact" />
+                    card_view:srcCompat="@mipmap/call_contact" />
 
             </LinearLayout>
 
@@ -117,7 +117,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_margin="4dp"
-                    android:src="@mipmap/navigate" />
+                    card_view:srcCompat="@mipmap/navigate" />
 
                 <TextView
                     android:id="@+id/tv_status"

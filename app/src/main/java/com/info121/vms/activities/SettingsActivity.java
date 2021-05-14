@@ -1,14 +1,15 @@
 package com.info121.vms.activities;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.info121.vms.App;
 import com.info121.vms.R;
 import com.info121.vms.utilities.PrefDB;
 
@@ -63,6 +64,9 @@ public class SettingsActivity extends AppCompatActivity {
                 }).create();
         alertDialog.setCancelable(false);
         alertDialog.show();
+
+        App.CONST_REST_API_URL = App.CONST_REST_API_URL_TEMPLATE.replace("{IPADDRESS}", prefDB.getString("CURRENT_IP"));
+        App.CONST_PHOTO_UPLOAD_URL = App.CONST_PHOTO_UPLOAD_TEMPLATE.replace("{IPADDRESS}", prefDB.getString("CURRENT_IP"));
 
     }
 

@@ -1,7 +1,6 @@
 package com.info121.vms.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,6 +26,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.util.Log;
@@ -46,21 +46,20 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.info121.vms.AbstractActivity;
 import com.info121.vms.App;
 import com.info121.vms.R;
 import com.info121.vms.api.APIClient;
-import com.info121.vms.models.ScanResult;
-import com.info121.vms.models.Status;
-import com.info121.vms.models.VehicleSaveRes;
-import com.info121.vms.utilities.PrefDB;
-import com.info121.vms.utilities.Utils;
 import com.info121.vms.models.Block;
 import com.info121.vms.models.Purpose;
+import com.info121.vms.models.ScanResult;
+import com.info121.vms.models.Status;
 import com.info121.vms.models.Storey;
 import com.info121.vms.models.UnitNo;
 import com.info121.vms.models.Vehicle;
+import com.info121.vms.models.VehicleSaveRes;
+import com.info121.vms.utilities.PrefDB;
+import com.info121.vms.utilities.Utils;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 import com.squareup.picasso.Callback;
@@ -212,6 +211,12 @@ public class RegisterActivity extends AbstractActivity {
     @BindView(R.id.btn_call)
     Button mCall;
 
+    @BindView(R.id.btn_scan_no_photo)
+    Button mBtnScanNoPhoto;
+
+    @BindView(R.id.btn_scan)
+    Button mBtnScan;
+
     @BindView(R.id.iu_number)
     TextView mIuNumber;
 
@@ -235,7 +240,11 @@ public class RegisterActivity extends AbstractActivity {
     ProgressBar mPgScanVehiclePhoto;
 
 
+    ScanResult scanResult;
+
     Boolean withPhoto = true;
+
+    Boolean isCallingAPI = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -280,7 +289,6 @@ public class RegisterActivity extends AbstractActivity {
 
     private void populateVehicle(int ID) {
         vehicle = Vehicle.findById(Vehicle.class, ID);
-
 
         mLayoutScan.setVisibility(View.VISIBLE);
 
@@ -468,6 +476,15 @@ public class RegisterActivity extends AbstractActivity {
 
         storeyAdapter = new ArrayAdapter<Storey>(mContext, R.layout.support_simple_spinner_dropdown_item, storeys);
         mStorey.setAdapter(storeyAdapter);
+
+        if (scanResult != null)
+            for (int i = 0; i < storeyAdapter.getCount(); i++) {
+                if (storeyAdapter.getItem(i).getStorey().equals(scanResult.getStorey())) {
+                    mStorey.setSelection(i);
+                    populateUnit(scanResult.getBlockno(), scanResult.getStorey());
+                    break;
+                }
+            }
     }
 
     private void populateUnit(String block, String storey) {
@@ -478,6 +495,14 @@ public class RegisterActivity extends AbstractActivity {
 
         unitAdapter = new ArrayAdapter<UnitNo>(mContext, R.layout.support_simple_spinner_dropdown_item, unitNos);
         mUnit.setAdapter(unitAdapter);
+
+        if (scanResult != null)
+            for (int i = 0; i < unitAdapter.getCount(); i++) {
+                if (unitAdapter.getItem(i).getUnitno().equals(scanResult.getRoomno())) {
+                    mUnit.setSelection(i);
+                    break;
+                }
+            }
     }
 
 
@@ -573,7 +598,6 @@ public class RegisterActivity extends AbstractActivity {
 
         startActivityForResult(intent, REQ_VEHICLE_NO);
 
-
     }
 
 
@@ -584,6 +608,9 @@ public class RegisterActivity extends AbstractActivity {
 
 
     private void scanVehicleData() {
+
+        clearAllFields();
+
         if (!isOnline(mContext)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Unable to connect to server. Please check your internet connection.")
@@ -615,31 +642,62 @@ public class RegisterActivity extends AbstractActivity {
         else
             lane = "visitor";
 
+
+
+        Utils.setButtonEnable(mContext, mBtnScan, false);
+        Utils.setButtonEnable(mContext, mBtnScanNoPhoto, false);
         APIClient.GetIUScan(lane);
     }
 
 
     @OnClick(R.id.btn_scan_no_photo)
     public void btnScanNoPhotoOnClick() {
+        clearAllFields();
         withPhoto = false;
         scanVehicleData();
+
+        isCallingAPI = true;
+        mBtnScanNoPhoto.setEnabled(false);
+        callDelay();
     }
 
     @OnClick(R.id.btn_scan)
     public void btnScanOnClick() {
+        clearAllFields();
         withPhoto = true;
         scanVehicleData();
+
+        isCallingAPI = true;
+        mBtnScan.setEnabled(false);
+        callDelay();
+    }
+
+    private void callDelay(){
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBtnScan.setEnabled(true);
+                mBtnScanNoPhoto.setEnabled(true);
+            }
+        }, 1000);
     }
 
 
     @Subscribe
     public void onEvent(ScanResult res) throws IOException {
+
+        Utils.setButtonEnable(mContext, mBtnScan, true);
+        Utils.setButtonEnable(mContext, mBtnScanNoPhoto, true);
+
+
         if (res != null) {
 
             if (pd != null && pd.isShowing()) {
                 pd.dismiss();
             }
 
+            scanResult = res;
 
             if (res.getIunumber().isEmpty()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -665,7 +723,8 @@ public class RegisterActivity extends AbstractActivity {
             mIuNumber.setText(res.getIunumber());
             //  mSerialNo.setText(res.getSerialno());
             // 8/14/2018 1:01:26 PM
-            Date longDate = Utils.convertDateStringToDate(res.getEntrydatetime(), "MM/dd/yyyy hh:mm:ss a");
+           Date longDate = Utils.convertDateStringToDate(res.getEntrydatetime(), "MM/dd/yyyy hh:mm:ss a");
+        //    Date longDate = Utils.convertDateStringToDate(res.getEntrydatetime(), "dd/MM/yyyy hh:mm:ss a");
 
             mEntryDateTime.setText(Utils.convertDateToString(longDate, "dd/MM/yyyy hh:mm"));
             mName.setText(res.getDrivername());
@@ -673,36 +732,44 @@ public class RegisterActivity extends AbstractActivity {
 
             mVehicleNo.setText(res.getCarnumber());
             scanVehicleNo = res.getCarnumber();
-            //mMobileNo.setText(vehicle.getMobileNo());
+
             mName.setText(res.getDrivername());
             mVisitType.setText(vehicle.getVisitType());
             mResident.setText(res.getResident());
-
+            mMobileNo.setText(res.getDriverphone());
+            mRemarks.setText(res.getRemark());
             mEntryID.setText(res.getSerialno());
 
 
+            if (res.getStorey().length() == 1)
+                res.setStorey("0" + res.getStorey());
+
+            if (res.getRoomno().length() == 1)
+                res.setRoomno("0" + res.getRoomno());
+
             for (int i = 0; i < blockAdapter.getCount(); i++) {
-                if (blockAdapter.getItem(i).getBlock().equals(vehicle.getBlock())) {
+                if (blockAdapter.getItem(i).getBlock().equals(res.getBlockno())) {
                     mBlock.setSelection(i);
                     populateStorey(res.getBlockno());
                     break;
                 }
             }
 
-            for (int i = 0; i < storeyAdapter.getCount(); i++) {
-                if (storeyAdapter.getItem(i).getStorey().equals(vehicle.getStorey())) {
-                    mStorey.setSelection(i);
-                    populateUnit(res.getBlockno(), res.getStorey());
-                    break;
-                }
-            }
+//            for (int i = 0; i < storeyAdapter.getCount(); i++) {
+//                if (storeyAdapter.getItem(i).getStorey().equals(res.getStorey())) {
+//                    mStorey.setSelection(i);
+//                    populateUnit(res.getBlockno(), res.getStorey());
+//                    break;
+//                }
+//            }
 
-            for (int i = 0; i < unitAdapter.getCount(); i++) {
-                if (unitAdapter.getItem(i).getUnitno().equals(res.getRoomno())) {
-                    mUnit.setSelection(i);
-                    break;
-                }
-            }
+//            for (int i = 0; i < unitAdapter.getCount(); i++) {
+//                if (unitAdapter.getItem(i).getUnitno().equals(res.getRoomno())) {
+//                    mUnit.setSelection(i);
+//                    break;
+//                }
+//            }
+
 
             for (int i = 0; i < purposeAdapter.getCount(); i++) {
                 if (purposeAdapter.getItem(i).getPurposeofvisit().equals(res.getPurposeofvisit())) {
